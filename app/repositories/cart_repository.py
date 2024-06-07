@@ -1,10 +1,16 @@
 class CartRepository:
 
     def __init__(self):
-        self.cart = []
+        self.items = []
 
     def addProduct(self, product):
-        self.cart.append(product)
+        self.items.append(product)
 
-    def getTotal(self):
-        return sum(product.price for product in self.cart)
+    def removeProduct(self, product):
+        self.items.remove(product)
+
+    def calculateTotal(self):
+        total = sum(product.price for product in self.items)
+        if total > 100:
+            total = total - (total * 0.1)
+        return total
